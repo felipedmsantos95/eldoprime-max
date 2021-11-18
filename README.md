@@ -1,2 +1,3 @@
-# eldoprime-max
-Movies catalog platform
+# EldoPrime Max
+
+Movies catalog platform.
