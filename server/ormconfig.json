@@ -1,19 +1,19 @@
 {
     "type": "mysql",
-    "host": "eldorado_prime_db",
+    "host": "127.0.0.1",
     "port": 3306,
     "username": "root",
     "password": "root",
-    "database": "eldoradoprime",
+    "database": "eldoprime_max_db",
     "logging": false,
     "entities": [
-       "src/Entities/*.ts"
+       "./src/app/Entities/*.ts"
     ],
     "migrations": [
-       "src/Database/Migrations/*.ts"
+       "./src/app/Database/Migrations/*.ts"
     ],
     "cli": {
-        "migrationsDir": "src/Database/Migrations",
-        "entitiesDir": "src/Entities"
+        "migrationsDir": "./src/app/Database/Migrations",
+        "entitiesDir": "./src/app/Entities"
     }
  }

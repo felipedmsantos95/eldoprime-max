@@ -1,17 +1,23 @@
 import express from 'express';
-import cors from 'cors';
-import routes from './config/router';
-//import { errors } from 'celebrate';
+import { createConnection } from 'typeorm';
+import "express-async-errors";
+import { pagination } from "typeorm-pagination";
+import { resolve } from 'path';
+import 'dotenv/config'
+import router from './config/router';
 
+const port = process.env.API_PORT || 3001;
 const app = express();
-
-app.use(cors())
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-app.use(routes);
 
+app.use('/static/movies', 
+    express.static(resolve(__dirname, '..', 'public', 'static', 'uploads'))
+);
 
-//app.use(errors());
+console.log(`[EldoPrime Max] Server running on port ${port}`)
+createConnection().then(() => console.log("[MySQL] Database was connected successful!"));
+app.use(pagination);
+app.use(router);
 
-const port = 3001
 app.listen(port);
-console.log("[EldoPrime Max] Running on port " + port)
