@@ -6,6 +6,12 @@ import slugifyConfig from "../../config/slugify";
 @EntityRepository(Movies)
 class MoviesRepository extends Repository<Movies> {
    
+    public FindAndPopulate() {
+
+        return this.find({relations: ['category']});
+
+    }
+    
     public FindById(id) {
 
         return this.findOne({id}, {relations: ['category']});

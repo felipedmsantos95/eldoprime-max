@@ -5,9 +5,12 @@ import { pagination } from "typeorm-pagination";
 import { resolve } from 'path';
 import 'dotenv/config'
 import router from './config/router';
+import cors from 'cors';
+
 
 const port = process.env.API_PORT || 3001;
 const app = express();
+app.use(cors());
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 

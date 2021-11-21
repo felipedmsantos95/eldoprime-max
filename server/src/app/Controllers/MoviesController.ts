@@ -9,7 +9,7 @@ class MoviesController {
     async index(request: Request, response: Response) {
 
         const moviesRepository = getCustomRepository(MoviesRepository);
-        const movies = await moviesRepository.find({relations:['fk_movie_category']});
+        const movies = await moviesRepository.FindAndPopulate();
         response.json({
             status: 'success',
             data: movies
@@ -110,9 +110,17 @@ class MoviesController {
     async delete(request: Request, response: Response) {
         const moviesRepository = getCustomRepository(MoviesRepository);
         const { id } = request.params;
-        let movies = await moviesRepository.FindById(id);
+        let movie = await moviesRepository.findOne(id);
 
-        await moviesRepository.delete(movies);
+        if (!movie) {
+            return response.status(409).json({
+                status: "fail",
+                data: {
+                    title: "Este filme não foi encontrado em nosso banco de dados"
+                }
+            })
+        }
+        await moviesRepository.remove(movie);
         return response.json({"msg": "Filme excluido com suceso!"});
     }
 }

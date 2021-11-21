@@ -10,6 +10,7 @@
     "server": "node dist/server.js"
   },
   "dependencies": {
+    "@types/cors": "^2.8.12",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",

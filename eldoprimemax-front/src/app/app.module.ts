@@ -3,14 +3,28 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+import { MovieviewComponent } from './movieview/movieview.component';
+import { MovielistComponent } from './movielist/movielist.component';
+import { MoviecardComponent } from './moviecard/moviecard.component';
+import { AddmovieComponent } from './addmovie/addmovie.component';
+import { EditmovieComponent } from './editmovie/editmovie.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    MovieviewComponent,
+    MovielistComponent,
+    MoviecardComponent,
+    AddmovieComponent,
+    EditmovieComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
