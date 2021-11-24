@@ -14,34 +14,34 @@ import { Component, EventEmitter, OnInit, Output } from "@angular/core";
         </div>
         <div class="modal-body content">
           <div class="inputField">
-            <div class="label"><label>Name</label></div>
+            <div class="label"><label>Título do Filme</label></div>
             <div><input id="addMovieName" type="text" /></div>
           </div>
           <div class="inputField">
-            <div class="label"><label>ImageUrl</label></div>
+            <div class="label"><label>Gênero</label></div>
+            <div><select id="addMovieGenre" type="text" ></select></div>
+          </div>
+          <div class="inputField">
+          <div class="label"><label>Sinopse</label></div>
+          <div><input id="addMovieSynopsis" type="text" /></div>
+          </div>
+          <div class="inputField">
+          <div class="label"><label>Data de Lançamento</label></div>
+          <div><input id="addMovieYear" type="date" /></div>
+          </div>
+          <div class="inputField">
+            <div class="label"><label>Adicionar Imagem</label></div>
             <div><input id="addMovieImageUrl" type="text" /></div>
-          </div>
-          <div class="inputField">
-            <div class="label"><label>Synopsis</label></div>
-            <div><input id="addMovieSynopsis" type="text" /></div>
-          </div>
-          <div class="inputField">
-            <div class="label"><label>Year</label></div>
-            <div><input id="addMovieYear" type="text" /></div>
-          </div>
-          <div class="inputField">
-            <div class="label"><label>Genre</label></div>
-            <div><input id="addMovieGenre" type="text" /></div>
           </div>
         </div>
         <div class="modal-footer">
-          <button (click)="closeModal()">Cancel</button>
+          <button (click)="closeModal()">Cancelar</button>
           <button
             [disabled]="disable"
             class="btn"
             (click)="addNewMovie($event)"
           >
-            Add
+            Adicionar
           </button>
         </div>
       </div>
@@ -69,8 +69,34 @@ export class AddmovieComponent implements OnInit {
   @Output() closeDialog = new EventEmitter();
   @Output() refreshMovies = new EventEmitter();
   disable = false;
+  categories = [];
   constructor(private http: HttpClient) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.fetchCategories();
+
+    
+
+    console.log(this.categories)
+
+    
+  }
+  fetchCategories() {
+    this.http
+      .get("http://localhost:3001/categories")
+      .subscribe((data: any) => {
+        this.categories = data.data
+
+        console.log(this.categories)
+        let select = document.getElementById("addMovieGenre");
+
+        // for(let category in this.categories){
+        //     let element = document.createElement("option")
+        //     element.textContent = category.name
+        //     element.value = category.id
+        //     select.appendChild(element);
+        // }
+      });
+  }
   addNewMovie(e: Event) {
     this.disable = true;
     const {

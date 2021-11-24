@@ -18,7 +18,7 @@ import {
         ></div>
         <div class="movieview-details">
           <div class="movieview-name">
-            <h1>{{ movie?.name }} ({{ movie?.year_release }})</h1>
+            <h1>{{ movie?.name }} ({{ formatDate(movie?.year_release).getFullYear() }})</h1>
           </div>
           <div style="padding: 5px 0;">
             <span>
@@ -27,21 +27,21 @@ import {
                 class="btn"
                 (click)="showEditMovieDialog()"
               >
-                Edit
+                Editar
               </button>
               <button class="btn btn-danger" (click)="deleteMovie()">
-                Delete
+                Remover
               </button>
             </span>
           </div>
           <div style="padding: 5px 0;">
-            <span> Genre: {{ movie?.category.name }}</span>
+            <span> Gênero: {{ movie?.category.name }}</span>
           </div>
           <div style="padding: 5px 0;">
-            <span>Year: {{ movie?.year_release }}</span>
+            <span>Data de Lançamento: {{ formatDate(movie?.year_release).toLocaleDateString() }}</span>
           </div>
           <div class="movieview-synopsis-cnt">
-            <h2>Synopsis</h2>
+            <h2>Sinopse</h2>
             <div class="movie-synopsis">{{ movie?.synopsis }}</div>
           </div>
         </div>
@@ -104,6 +104,11 @@ export class MovieviewComponent implements OnInit {
     private http: HttpClient,
     private router: Router
   ) {}
+  formatDate(date: any){
+    let splitedDate = date.split(/[- : T Z]/);
+    return new Date(Date.UTC(splitedDate[0], splitedDate[1]-1, splitedDate[2], splitedDate[3], splitedDate[4]))
+  }
+  
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: Params) => {
       if (params.id) {
@@ -115,7 +120,7 @@ export class MovieviewComponent implements OnInit {
     });
   }
   deleteMovie() {
-    if (confirm("Do you really want to delete this movie")) {
+    if (confirm("Tem certeza que deseja remover este filme?")) {
       this.http
         .delete("http://localhost:3001/movie/" + this.movie?.id)
         .subscribe((data) => {

@@ -12,10 +12,10 @@ import { Component, Input, OnInit } from "@angular/core";
           <h3>{{ movie.name }}</h3>
         </div>
         <div class="movie-card-year">
-          <span>Year</span><span>{{ movie.year_release }}</span>
+          <span>Ano:</span><span>{{ formatDate(movie.year_release).getFullYear() }}</span>
         </div>
         <div class="movie-card-genre">
-          <span>Genre:</span><span>{{ movie.category.name }}</span>
+          <span>Gênero:</span><span>{{ movie.category.name }}</span>
         </div>
       </div>
     </div>
@@ -82,5 +82,9 @@ import { Component, Input, OnInit } from "@angular/core";
 export class MoviecardComponent implements OnInit {
   @Input() movie: any;
   constructor() {}
+  formatDate(date: any){
+    let splitedDate = date.split(/[- : T Z]/);
+    return new Date(Date.UTC(splitedDate[0], splitedDate[1]-1, splitedDate[2], splitedDate[3], splitedDate[4]))
+  }
   ngOnInit(): void {}
 }

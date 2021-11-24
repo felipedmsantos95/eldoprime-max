@@ -12,7 +12,7 @@ import {
     <div class="movielist-cnt">
       <div class="movielist-breadcrumb">
         <div>
-          <h2>Trending movies</h2>
+          <h2>Catálogo de Filmes</h2>
         </div>
         <div>
           <button
@@ -20,7 +20,7 @@ import {
             style="padding-left: 15px;padding-right: 15px;font-weight: 500;"
             (click)="showAddMovieDialog()"
           >
-            Add Movie
+           Adicionar Filme
           </button>
         </div>
       </div>
