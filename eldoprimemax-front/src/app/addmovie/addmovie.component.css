@@ -11,3 +11,7 @@
     margin: 3px 7px;
     flex: 1 40%;
 }
+
+.file-input {
+    display: none;
+}

@@ -8,7 +8,9 @@ export default async (request: Request, response: Response, next: NextFunction) 
     try {
         
         const schema = Yup.object().shape({
-            name: Yup.string().required("Este campo precisa ser preenchido.").trim(),
+            name: Yup.string().required("O campo Título precisa ser preenchido.").trim(),
+            year_release: Yup.string().required("O campo Data de Lançamento precisa ser preenchido.").trim(),
+            synopsis: Yup.string().required("O campo Sinopse precisa ser preenchido.").trim(),
         });
 
         await schema.validate(request.body, { abortEarly: false })
@@ -16,7 +18,9 @@ export default async (request: Request, response: Response, next: NextFunction) 
     } catch (error) {
         return response.status(400).json({
             status: "fail",
-            message: error.inner
+            data: {
+                error: error.inner[0].message
+            }
         })
     }
 }

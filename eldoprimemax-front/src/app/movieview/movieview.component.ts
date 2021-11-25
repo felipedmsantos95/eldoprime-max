@@ -8,7 +8,10 @@ import {
   ViewContainerRef,
 } from "@angular/core";
 
-import {formatDate,getYear} from "../../utils"
+import { environment } from "../../environments/environment"
+
+import {formatDate, getYear} from "../../utils"
+ 
 @Component({
   selector: "app-movieview",
   templateUrl:  "./movieview.component.html",
@@ -34,7 +37,7 @@ export class MovieviewComponent implements OnInit {
       if (params.id) {
         const movieId = params.id;
         this.http
-          .get("http://localhost:3001/movie/" + movieId)
+          .get(`${environment.baseApiUrl}/movie/${movieId}`)
           .subscribe((data: any) => (this.movie = data.data));
       }
     });
@@ -50,7 +53,7 @@ export class MovieviewComponent implements OnInit {
   deleteMovie() {
     if (confirm("Tem certeza que deseja remover este filme?")) {
       this.http
-        .delete("http://localhost:3001/movie/" + this.movie?.id)
+        .delete(`${environment.baseApiUrl}/movie/${this.movie?.id}`)
         .subscribe((data) => {
           this.router.navigate(["/"]);
         });

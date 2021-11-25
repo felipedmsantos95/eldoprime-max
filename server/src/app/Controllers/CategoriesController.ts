@@ -39,7 +39,7 @@ class CategoriesController {
                 return response.status(409).json({
                     status: "fail",
                     data: {
-                        title: "Esta categoria já está cadastrada"
+                        error: "Esta categoria já está cadastrada"
                     }
                 })
             }

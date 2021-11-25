@@ -6,6 +6,10 @@ import {
   ViewChild,
   ViewContainerRef,
 } from "@angular/core";
+
+import { environment } from "../../environments/environment"
+
+
 @Component({
   selector: "app-movielist",
   templateUrl: "./movielist.component.html",
@@ -25,9 +29,8 @@ export class MovielistComponent implements OnInit {
   }
   fetchMovies() {
     this.http
-      .get("http://localhost:3001/movies")
+      .get(`${environment.baseApiUrl}/movies`)
       .subscribe((data: any) => {
-        console.log(data)
         this.movies = data.data
       });
   }

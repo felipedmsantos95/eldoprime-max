@@ -1,9 +1,16 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { environment } from "../../environments/environment"
+
 
 interface ICategory {
   name: string;
   id: number;
+}
+
+interface IFile {
+  name: string,
+  data: File
 }
 
 @Component({
@@ -14,7 +21,8 @@ interface ICategory {
 
 export class AddmovieComponent implements OnInit {
   categories:ICategory[] = [];
-  fileToUpload: File | null = null;
+  file = {} as IFile
+
   @Output() closeDialog = new EventEmitter();
   @Output() refreshMovies = new EventEmitter();
   disable = false;
@@ -22,17 +30,19 @@ export class AddmovieComponent implements OnInit {
   ngOnInit(): void {
     this.fetchCategories(); 
   }
-  handleFileInput(files: FileList) {
-    this.fileToUpload = files.item(0);
+  onFileSelected(event: any) {
+    const file:File = event.target.files[0];
+
+    if (file){
+        this.file.data = event.target.files[0];
+        this.file.name = file.name;
+    }
   }
   fetchCategories() {
     this.http
-      .get("http://localhost:3001/categories")
+      .get(`${environment.baseApiUrl}/categories`)
       .subscribe((data: any) => {
         this.categories = data.data
-
-        console.log(this.categories)
-
       });
   }
   addNewMovie(e: Event) {
@@ -41,30 +51,31 @@ export class AddmovieComponent implements OnInit {
       addMovieName,
       addMovieYear,
       addMovieGenre,
-      addMovieImageUrl,
       addMovieSynopsis,
     } = window as any;
-    this.http
-      .post("http://localhost:3001/movie", {
-        name: addMovieName.value,
-        year_release: addMovieYear.value,
-        synopsis: addMovieSynopsis.value,
-        poster: addMovieImageUrl.value,
-        category_id: addMovieGenre.value,
-      })
-      .subscribe(
-        (data) => {
-          this.disable = false;
-          this.refreshMovies.emit("");
-          this.closeDialog.emit("");
-        },
-        (err) => {
-          this.disable = false;
-        }
-      );
+
+    let formData = new FormData()
+    formData.append('name', addMovieName.value)
+    formData.append('year_release', addMovieYear.value)
+    formData.append('synopsis', addMovieSynopsis.value)
+    formData.append('category_id', addMovieGenre.value)
+    if(Object.keys(this.file).length != 0)
+      formData.append('poster', this.file.data, this.file.name)
+
+    this.http.post(`${environment.baseApiUrl}/movie`, formData)
+    .subscribe(
+      (data) => {
+        this.disable = false;
+        this.refreshMovies.emit("");
+        this.closeDialog.emit("");
+      },
+      (err) => {
+        alert(err.error.data.error)
+        console.log(err.error.data.error)
+        this.disable = false;
+      }
+    );
   }
-
-
   closeModal() {
     this.closeDialog.emit("");
   }

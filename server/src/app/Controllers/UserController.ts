@@ -33,7 +33,7 @@ class UserController {
             return response.status(409).json({
                 status: "fail",
                 data: {
-                    title: "Este email já está cadastrado em nosso banco de dados"
+                    error: "Este email já está cadastrado em nosso banco de dados"
                 }
             })
         }

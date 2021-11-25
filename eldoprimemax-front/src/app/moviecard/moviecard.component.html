@@ -8,7 +8,7 @@
         <h3>{{ movie.name }}</h3>
       </div>
       <div class="movie-card-year">
-        <span>Ano:</span><span>{{ formatDate(movie.year_release).getFullYear() }}</span>
+        <span>Ano:</span><span>{{ get_year(movie.year_release) }}</span>
       </div>
       <div class="movie-card-genre">
         <span>Gênero:</span><span>{{ movie.category.name }}</span>

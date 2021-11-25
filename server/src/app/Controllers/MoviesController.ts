@@ -42,13 +42,14 @@ class MoviesController {
                 category_id
             } = request.body
 
+
             const MoviesAlreadyExists = await moviesRepository.CompareSlug(name);
             
             if (typeof MoviesAlreadyExists !== 'undefined') {
                 return response.status(409).json({
                     status: "fail",
                     data: {
-                        title: "Este filme já foi cadastrado em nosso banco de dados;"
+                        error: "Este filme já foi cadastrado em nosso banco de dados"
                     }
                 })
             }
@@ -116,7 +117,7 @@ class MoviesController {
             return response.status(409).json({
                 status: "fail",
                 data: {
-                    title: "Este filme não foi encontrado em nosso banco de dados"
+                    error: "Este filme não foi encontrado em nosso banco de dados"
                 }
             })
         }
