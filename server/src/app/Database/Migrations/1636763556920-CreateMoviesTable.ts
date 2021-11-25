@@ -26,12 +26,12 @@ export class createNewsTable1636763556920 implements MigrationInterface {
                 {
                     name: "synopsis",
                     type: "text",
-                    isNullable: true
+                    isNullable: false
                 },
                 {
                     name: "year_release",
                     type: "timestamp",
-                    isNullable: true
+                    isNullable: false
                 },
                 {
                     name: "profit",

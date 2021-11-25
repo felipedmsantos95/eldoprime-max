@@ -1,0 +1,47 @@
+<div class="modal">
+    <div class="modal-backdrop" (click)="closeModal()"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Adicionar Filme</h3>
+        <span style="padding: 10px;cursor: pointer;" (click)="closeModal()"
+          >X</span
+        >
+      </div>
+      <div class="modal-body content">
+        <div class="inputField">
+          <div class="label"><label>Título do Filme</label></div>
+          <div><input id="addMovieName" type="text" /></div>
+        </div>
+        <div class="inputField">
+          <div class="label"><label>Gênero</label></div>
+          <div>
+            <select id="addMovieGenre" type="text" >
+               <option *ngFor="let category of categories" value={{category?.id}} >{{category?.name}}</option>
+            </select>
+        </div>
+        </div>
+        <div class="inputField">
+        <div class="label"><label>Sinopse</label></div>
+        <div><input id="addMovieSynopsis" type="text" /></div>
+        </div>
+        <div class="inputField">
+        <div class="label"><label>Data de Lançamento</label></div>
+        <div><input id="addMovieYear" type="date" /></div>
+        </div>
+        <div class="inputField">
+          <div class="label"><label>Adicionar Imagem</label></div>
+          <div><input id="addMovieImageUrl" type="file" /></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button (click)="closeModal()">Cancelar</button>
+        <button
+          [disabled]="disable"
+          class="btn"
+          (click)="addNewMovie($event)"
+        >
+          Adicionar
+        </button>
+      </div>
+    </div>
+  </div>

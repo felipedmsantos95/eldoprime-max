@@ -12,10 +12,10 @@ module.exports = {
        __dirname + "/src/app/Entities/*.ts"
     ],
     "migrations": [
-       __dirname + "/src/Database/Migrations/*.ts"
+       __dirname + "/src/app/Database/Migrations/*.ts"
     ],
     "cli": {
-        "migrationsDir": __dirname + "/src/Database/Migrations",
+        "migrationsDir": __dirname + "/src/app/Database/Migrations",
         "entitiesDir": __dirname + "/src/app/Entities"
     }
  }

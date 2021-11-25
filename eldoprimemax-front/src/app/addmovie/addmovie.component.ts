@@ -1,84 +1,29 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+
+interface ICategory {
+  name: string;
+  id: number;
+}
+
 @Component({
   selector: "app-addmovie",
-  template: `
-    <div class="modal">
-      <div class="modal-backdrop" (click)="closeModal()"></div>
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3>Adicionar Filme</h3>
-          <span style="padding: 10px;cursor: pointer;" (click)="closeModal()"
-            >X</span
-          >
-        </div>
-        <div class="modal-body content">
-          <div class="inputField">
-            <div class="label"><label>Título do Filme</label></div>
-            <div><input id="addMovieName" type="text" /></div>
-          </div>
-          <div class="inputField">
-            <div class="label"><label>Gênero</label></div>
-            <div><select id="addMovieGenre" type="text" ></select></div>
-          </div>
-          <div class="inputField">
-          <div class="label"><label>Sinopse</label></div>
-          <div><input id="addMovieSynopsis" type="text" /></div>
-          </div>
-          <div class="inputField">
-          <div class="label"><label>Data de Lançamento</label></div>
-          <div><input id="addMovieYear" type="date" /></div>
-          </div>
-          <div class="inputField">
-            <div class="label"><label>Adicionar Imagem</label></div>
-            <div><input id="addMovieImageUrl" type="text" /></div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button (click)="closeModal()">Cancelar</button>
-          <button
-            [disabled]="disable"
-            class="btn"
-            (click)="addNewMovie($event)"
-          >
-            Adicionar
-          </button>
-        </div>
-      </div>
-    </div>
-  `,
-  styles: [
-    `
-      .label {
-        padding: 4px 0;
-        font-size: small;
-        color: rgb(51, 55, 64);
-      }
-      .content {
-        display: flex;
-        flex-wrap: wrap;
-      }
-      .inputField {
-        margin: 3px 7px;
-        flex: 1 40%;
-      }
-    `,
-  ],
+  templateUrl: "./addmovie.component.html",
+  styleUrls: [ "./addmovie.component.css"],
 })
+
 export class AddmovieComponent implements OnInit {
+  categories:ICategory[] = [];
+  fileToUpload: File | null = null;
   @Output() closeDialog = new EventEmitter();
   @Output() refreshMovies = new EventEmitter();
   disable = false;
-  categories = [];
   constructor(private http: HttpClient) {}
   ngOnInit(): void {
-    this.fetchCategories();
-
-    
-
-    console.log(this.categories)
-
-    
+    this.fetchCategories(); 
+  }
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
   }
   fetchCategories() {
     this.http
@@ -87,14 +32,7 @@ export class AddmovieComponent implements OnInit {
         this.categories = data.data
 
         console.log(this.categories)
-        let select = document.getElementById("addMovieGenre");
 
-        // for(let category in this.categories){
-        //     let element = document.createElement("option")
-        //     element.textContent = category.name
-        //     element.value = category.id
-        //     select.appendChild(element);
-        // }
       });
   }
   addNewMovie(e: Event) {
@@ -125,6 +63,8 @@ export class AddmovieComponent implements OnInit {
         }
       );
   }
+
+
   closeModal() {
     this.closeDialog.emit("");
   }

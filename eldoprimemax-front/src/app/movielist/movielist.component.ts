@@ -8,59 +8,8 @@ import {
 } from "@angular/core";
 @Component({
   selector: "app-movielist",
-  template: `
-    <div class="movielist-cnt">
-      <div class="movielist-breadcrumb">
-        <div>
-          <h2>Catálogo de Filmes</h2>
-        </div>
-        <div>
-          <button
-            class="btn"
-            style="padding-left: 15px;padding-right: 15px;font-weight: 500;"
-            (click)="showAddMovieDialog()"
-          >
-           Adicionar Filme
-          </button>
-        </div>
-      </div>
-      <div class="movielist">
-        <app-moviecard
-          *ngFor="let movie of movies"
-          [movie]="movie"
-        ></app-moviecard>
-      </div>
-      <ng-container #vc></ng-container>
-      <ng-template #modal>
-        <app-addmovie
-          (closeDialog)="closeDialog()"
-          (refreshMovies)="fetchMovies()"
-        ></app-addmovie>
-      </ng-template>
-    </div>
-  `,
-  styles: [
-    `
-      .movielist {
-        display: flex;
-        color: grey;
-        padding: 15px;
-        flex-wrap: wrap;
-        padding-top: 0;
-      }
-      .movielist-breadcrumb {
-        font-family: system-ui;
-        display: flex;
-        justify-content: space-between;
-        padding: 32px;
-        padding-bottom: 0;
-        padding-top: 17px;
-      }
-      .movielist-breadcrumb h2 {
-        margin: 0;
-      }
-    `,
-  ],
+  templateUrl: "./movielist.component.html",
+  styleUrls: ["./movielist.component.css"],
 })
 export class MovielistComponent implements OnInit {
   movies = [];

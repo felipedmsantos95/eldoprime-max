@@ -1,99 +1,44 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import {formatDate,dateToInputDate} from "../../utils"
+
+interface ICategory {
+  name: string;
+  id: number;
+}
+
+
 @Component({
   selector: "app-editmovie",
-  template: `
-    <div class="modal">
-      <div class="modal-backdrop" (click)="closeModal()"></div>
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3>Edit Movie</h3>
-          <span style="padding: 10px;cursor: pointer;" (click)="closeModal()"
-            >X</span
-          >
-        </div>
-        <div class="modal-body content">
-          <div class="inputField">
-            <div class="label"><label>Name</label></div>
-            <div>
-              <input id="addMovieName" type="text" value="{{ movie?.name }}" />
-            </div>
-          </div>
-          <div class="inputField">
-            <div class="label"><label>ImageUrl</label></div>
-            <div>
-              <input
-                id="addMovieImageUrl"
-                type="text"
-                value="{{ movie?.poster }}"
-              />
-            </div>
-          </div>
-          <div class="inputField">
-            <div class="label"><label>Synopsis</label></div>
-            <div>
-              <input
-                id="addMovieSynopsis"
-                type="text"
-                value="{{ movie?.synopsis }}"
-              />
-            </div>
-          </div>
-          <div class="inputField">
-            <div class="label"><label>Year</label></div>
-            <div>
-              <input id="addMovieYear" type="text" value="{{ movie?.year_release }}" />
-            </div>
-          </div>
-          <div class="inputField">
-            <div class="label"><label>Genre</label></div>
-            <div>
-              <input
-                id="addMovieGenre"
-                type="text"
-                value="{{ movie?.category.name }}"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button (click)="closeModal()">Cancel</button>
-          <button
-            [disabled]="disable"
-            class="btn"
-            (click)="editNewMovie($event)"
-          >
-            Save
-          </button>
-        </div>
-      </div>
-    </div>
-  `,
-  styles: [
-    `
-      .label {
-        padding: 4px 0;
-        font-size: small;
-        color: rgb(51, 55, 64);
-      }
-      .content {
-        display: flex;
-        flex-wrap: wrap;
-      }
-      .inputField {
-        margin: 3px 7px;
-        flex: 1 40%;
-      }
-    `,
-  ],
+  templateUrl: "./editmovie.component.html",
+  styleUrls: ["./editmovie.component.css"],
 })
 export class EditmovieComponent implements OnInit {
+  categories:ICategory[] = [];
   @Output() closeDialog = new EventEmitter();
   @Output() refreshMovies = new EventEmitter();
   @Input() movie: any;
   disable = false;
   constructor(private http: HttpClient) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.fetchCategories();
+  }
+  format_date(date: string){
+    return formatDate(date)
+  }
+  edited_date(date: string){
+    return dateToInputDate(date)
+  }
+  fetchCategories() {
+    this.http
+      .get("http://localhost:3001/categories")
+      .subscribe((data: any) => {
+        this.categories = data.data
+
+        console.log(this.categories)
+
+      });
+  }
   editNewMovie(e: Event) {
     this.disable = true;
     const {

@@ -1,27 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 @Component({
   selector: "app-header",
-  template: `
-    <section class="header">
-      <div class="headerName">EldoPrime Max</div>
-    </section>
-  `,
-  styles: [
-    `
-      .header {
-        height: 40px;
-        background-color: black;
-        color: white;
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        font-family: sans-serif;
-      }
-      .headerName {
-        font-size: 1.8em;
-      }
-    `,
-  ],
+  templateUrl: "./header.component.html",
+  styleUrls: ["./header.component.css"],
 })
 export class HeaderComponent implements OnInit {
   constructor() {}
