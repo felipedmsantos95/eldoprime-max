@@ -11,9 +11,11 @@ import { MovielistComponent } from './pages/movielist/movielist.component';
 import { MoviecardComponent } from './pages/moviecard/moviecard.component';
 import { AddmovieComponent } from './pages/addmovie/addmovie.component';
 import { EditmovieComponent } from './pages/editmovie/editmovie.component';
+import { LoginComponent } from './pages/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -25,13 +27,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     MoviecardComponent,
     MoviefilterComponent,
     AddmovieComponent,
-    EditmovieComponent
+    EditmovieComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule, 
     HttpClientModule, BrowserAnimationsModule,
-    MatIconModule,ReactiveFormsModule
+    MatIconModule,ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -99,6 +99,20 @@ html {
     background-color: transparent;
     box-sizing: border-box;
   }
+
+  textarea {
+    width: 496px;
+    height: 175px;
+    padding: 9px;
+    font-weight: 400;
+    cursor: text;
+    outline: 0px;
+    border: 1px solid rgb(227, 233, 243);
+    border-radius: 2px;
+    color: rgb(51, 55, 64);
+    background-color: transparent;
+    box-sizing: border-box;
+  }
   input[type="date"] {
     width: 100%;
     padding: 9px;

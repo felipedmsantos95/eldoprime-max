@@ -91,6 +91,6 @@ export class EditmovieComponent implements OnInit {
     );
   }
   closeModal() {
-    this.closeDialog.emit("");
+    this.closeDialog.emit("/movieslist");
   }
 }

@@ -11,6 +11,7 @@ import uploadConfig from './multer';
 
 //Users
 import AuthController from "../app/Controllers/AuthController";
+import AuthValidator from '../app/Validator/AuthValidator';
 import Auth from '../app/Middlewares/AuthMiddleware';
 import UserController from "../app/Controllers/UserController";
 
@@ -22,7 +23,7 @@ const upload = Multer(uploadConfig);
 
 
 //Users
-router.post('/auth', AuthController.auth);
+router.post('/auth', AuthValidator, AuthController.auth);
 router.post('/user', UserController.create);
 router.get('/users', UserController.index);
 

@@ -21,17 +21,17 @@
         </div>
         </div>
         <div class="inputField">
-        <div class="label"><label>Sinopse</label></div>
-        <div><input id="addMovieSynopsis" type="text" /></div>
+          <div class="label"><label>Data de Lançamento</label></div>
+          <div><input id="addMovieYear" type="date" /></div>
         </div>
         <div class="inputField">
-        <div class="label"><label>Data de Lançamento</label></div>
-        <div><input id="addMovieYear" type="date" /></div>
+          <div class="label"><label>Sinopse</label></div>
+          <div><textarea id="addMovieSynopsis" type="text" ></textarea></div>
         </div>
         <div class="inputField">
           <div class="label"><label>Adicionar Imagem</label></div>
           <div>
-            <input id="addMovieImageUrl" class="file-input" type="file" (change)="onFileSelected($event)" #fileUpload/>
+            <input id="addMovieImageUrl" class="file-input" type="file" accept="image/png, image/gif, image/jpeg, image/jpg" (change)="onFileSelected($event)" #fileUpload/>
             <div class="file-upload">
 
               {{file.name || "Nenhum arquivo selecionado."}}

@@ -76,6 +76,6 @@ export class AddmovieComponent implements OnInit {
     );
   }
   closeModal() {
-    this.closeDialog.emit("");
+    this.closeDialog.emit("/movieslist");
   }
 }

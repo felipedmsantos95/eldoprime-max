@@ -38,3 +38,9 @@ typings/
 lib/*.js
 test/*.js
 *.map
+
+public/static/uploads/*jpg
+public/static/uploads/*png
+public/static/uploads/*jpeg
+public/static/uploads/*gif
+

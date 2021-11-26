@@ -1,4 +1,9 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <section class="header">
-    <div class="headerName" [routerLink]="['/']" >EldoPrime Max</div>
+    <div class="headerName" [routerLink]="['/movieslist']" >EldoPrime Max</div>
     <div class="categories" *ngFor="let category of categories" routerLink="/category/{{ category.id }}">{{category?.name}} </div>
+    <div class="logout" [routerLink]="['/']" >
+        <i class="fa fa-sign-out" ></i>
+        Sair
+    </div>
 </section>

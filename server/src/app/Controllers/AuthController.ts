@@ -21,7 +21,7 @@ class AuthController {
             return response.status(401).json({
                 status: "fail",
                 data: {
-                    error: "Usuário não encontrado."
+                    error: "Usuário não encontrado"
                 }
             })
         }
@@ -32,7 +32,7 @@ class AuthController {
             return response.status(401).json({
                 status: "fail",
                 data: {
-                    error: "Usuário não encontrado."
+                    error: "Senha inválida"
                 }
             })
         }

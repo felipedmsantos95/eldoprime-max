@@ -8,8 +8,7 @@ export default async (request: Request, response: Response, next: NextFunction) 
     try {
         
         const schema = Yup.object().shape({
-            name: Yup.string().required("Nome precisa ser preenchido.").trim(),
-            email: Yup.string().required("Email precisa ser preenchido.").trim(),
+            email: Yup.string().required("Por favor, digite o email.").trim(),
             password: Yup.string().required("Por favor digite a senha.").trim(),
         });
 
@@ -18,7 +17,9 @@ export default async (request: Request, response: Response, next: NextFunction) 
     } catch (error) {
         return response.status(400).json({
             status: "fail",
-            error: error.inner[0].message
+            data:{
+                error: error.inner[0].message
+            }
         })
     }
 }

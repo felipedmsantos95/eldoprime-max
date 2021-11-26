@@ -3,12 +3,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { MovieviewComponent } from './pages/movieview/movieview.component';
 import { MovielistComponent } from './pages/movielist/movielist.component';
 import { MoviefilterComponent } from './pages/moviefilter/moviefilter.component';
+import { LoginComponent } from './pages/login/login.component';
+
 
 
 
 const routes: Routes = [
   {
     path: "",
+    component: LoginComponent,
+  },
+  {
+    path: "movieslist",
     component: MovielistComponent,
   },
   {
