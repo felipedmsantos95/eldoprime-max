@@ -52,6 +52,8 @@ class AuthController {
         return response.json({
             status: 'success',
             data: {
+                id: user.id,
+                name: user.name,
                 token
             }
         });

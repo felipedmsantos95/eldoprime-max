@@ -17,6 +17,18 @@ class MoviesController {
         })
     }
 
+    async indexByCategory(request: Request, response: Response) {
+
+        const moviesRepository = getCustomRepository(MoviesRepository);
+        const { id } = request.params;
+        const movies = await moviesRepository.FindByCategory(id);
+        response.json({
+            status: 'success',
+            data: movies
+
+        })
+    }
+
     async view(request: Request, response: Response) {
         const moviesRepository = getCustomRepository(MoviesRepository);
         const { id } = request.params;
@@ -49,7 +61,7 @@ class MoviesController {
                 return response.status(409).json({
                     status: "fail",
                     data: {
-                        error: "Este filme já foi cadastrado em nosso banco de dados"
+                        error: "Um filme com este título já foi cadastrado em nosso banco de dados"
                     }
                 })
             }
@@ -95,6 +107,7 @@ class MoviesController {
             poster,
             category_id
         } = request.body
+
 
         movies.name = name
         movies.synopsis = synopsis;

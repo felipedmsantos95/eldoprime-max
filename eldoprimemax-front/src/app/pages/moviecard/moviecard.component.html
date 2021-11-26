@@ -1,0 +1,17 @@
+<div class="movie-card" routerLink="/movie/{{ movie.id }}">
+    <div
+      class="movie-card-img"
+      style="background-image: url({{ movie.full_path }});"
+    ></div>
+    <div class="movie-card-footer">
+      <div class="movie-card-name">
+        <h3>{{ movie.name }}</h3>
+      </div>
+      <div class="movie-card-year">
+        <span>Ano:</span><span>{{ get_year(movie.year_release) }}</span>
+      </div>
+      <div class="movie-card-genre">
+        <span>Gênero:</span><span>{{ movie.category.name }}</span>
+      </div>
+    </div>
+  </div>

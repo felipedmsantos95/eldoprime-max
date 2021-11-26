@@ -7,15 +7,15 @@ import slugifyConfig from "../../config/slugify";
 class MoviesRepository extends Repository<Movies> {
    
     public FindAndPopulate() {
-
         return this.find({relations: ['category']});
-
     }
     
     public FindById(id) {
-
         return this.findOne({id}, {relations: ['category']});
+    }
 
+    public FindByCategory(categoryId){
+       return this.find({where: {category: categoryId}, relations: ['category'] } )
     }
 
 

@@ -1,0 +1,44 @@
+<div class="movieview-container">
+    <div class="movieview">
+      <div
+        class="movieview-image"
+        style="background-image: url({{ movie?.full_path }});"
+      ></div>
+      <div class="movieview-details">
+        <div class="movieview-name">
+          <h1>{{ movie?.name }} ({{ get_year(movie?.year_release) }})</h1>
+        </div>
+        <div style="padding: 5px 0;">
+          <span>
+            <button
+              style="margin-left: 0;"
+              class="btn"
+              (click)="showEditMovieDialog()"
+            >
+              Editar
+            </button>
+            <button class="btn btn-danger" (click)="deleteMovie()">
+              Remover
+            </button>
+          </span>
+        </div>
+        <div style="padding: 5px 0;">
+          <span> Gênero: {{ movie?.category.name }}</span>
+        </div>
+        <div style="padding: 5px 0;">
+          <span>Data de Lançamento: {{format_date(movie?.year_release)}}</span>
+        </div>
+        <div class="movieview-synopsis-cnt">
+          <h2>Sinopse</h2>
+          <div class="movie-synopsis">{{ movie?.synopsis }}</div>
+        </div>
+      </div>
+    </div>
+    <ng-container #vcRef></ng-container>
+    <ng-template #modalRef>
+      <app-editmovie
+        (closeDialog)="closeDialog()"
+        [movie]="movie"
+      ></app-editmovie>
+    </ng-template>
+  </div>

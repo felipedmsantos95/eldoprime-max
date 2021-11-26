@@ -35,6 +35,7 @@ router.delete('/category/:id', CategoriesController.delete);
 //Movies
 //router.use(Auth);
 router.get('/movies', MoviesController.index);
+router.get('/movies/:id', MoviesController.indexByCategory);
 router.get('/movie/:id', MoviesController.view);
 router.post('/movie', upload.single('poster'), MoviesValidator, MoviesController.create);
 router.put('/movie/:id', upload.single('poster'), MoviesValidator, MoviesController.update);

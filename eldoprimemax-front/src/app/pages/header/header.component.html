@@ -1,0 +1,4 @@
+<section class="header">
+    <div class="headerName" [routerLink]="['/']" >EldoPrime Max</div>
+    <div class="categories" *ngFor="let category of categories" routerLink="/category/{{ category.id }}">{{category?.name}} </div>
+</section>
