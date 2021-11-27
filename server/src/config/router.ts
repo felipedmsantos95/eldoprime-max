@@ -30,7 +30,7 @@ router.get('/users', UserController.index);
 //Categories
 router.get('/categories', CategoriesController.index);
 router.get('/category/:id', CategoriesController.view);
-router.post('/category', MoviesValidator, CategoriesController.create);
+router.post('/category', CategoriesController.create);
 router.delete('/category/:id', CategoriesController.delete);
 
 //Movies

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import {Category} from '../Entities/Category';
+import { Category } from '../Entities/Category';
 import CategoryRepository from '../Repository/CategoryRepository';
 import { getCustomRepository } from 'typeorm';
 
@@ -8,7 +8,11 @@ class CategoriesController {
     async index(request: Request, response: Response) {
 
         const categoryRepository = getCustomRepository(CategoryRepository);
-        const categories = await categoryRepository.find();
+        const categories = await categoryRepository.find({
+            order:{
+                name: "ASC"
+            }
+        });
         response.json({
             status: 'success',
             data: categories

@@ -2,8 +2,6 @@ import { Request, Response } from 'express';
 import { User } from '../Entities/User';
 import UserRepository from '../Repository/UserRepository';
 import { getCustomRepository } from 'typeorm';
-// import { createTransport } from 'nodemailer';
-// import mailConfig from '../../config/mail'
 
 
 class UserController {
