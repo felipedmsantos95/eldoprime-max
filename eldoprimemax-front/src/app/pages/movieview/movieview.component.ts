@@ -55,7 +55,7 @@ export class MovieviewComponent implements OnInit {
       this.http
         .delete(`${environment.baseApiUrl}/movie/${this.movie?.id}`)
         .subscribe((data) => {
-          this.router.navigate(["/"]);
+          this.router.navigate(["/movieslist"]);
         });
     }
   }
