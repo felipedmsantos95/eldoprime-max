@@ -31,7 +31,7 @@ To execute the project modules it is necessary to have the following requirement
 
 ```bash
 $ git clone https://github.com/felipedmsantos95/eldoprime-max
-$ cd proffy
+$ cd eldoprime-max
 ```
 
 ### Running Backend
@@ -46,7 +46,7 @@ $ cd proffy
 
 2. Once the dependencies are installed, using the command below it is possible to execute the application backend, by default it will be available for requests through port 3333 at the address http://localhost:3001/
 
-		yarn start
+		yarn dev:server
 
 ### Running Frontend Web
 
