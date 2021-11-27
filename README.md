@@ -3,7 +3,7 @@
 ## Application Web Preview
 
 <p align="center">
-  <img src="https://github.com/felipedmsantos95/eldoprime-max/blob/master/img/eldoprimemax.gif"/>
+  <img src="https://github.com/felipedmsantos95/eldoprime-max/blob/main/img/eldoprimemax.gif"/>
 </p>
 
 ## About
