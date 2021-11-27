@@ -42,7 +42,7 @@ $ cd proffy
 
 2. To configure the database:
 
-        yarn knex:migrate
+        yarn typeorm migration:run  
 
 2. Once the dependencies are installed, using the command below it is possible to execute the application backend, by default it will be available for requests through port 3333 at the address http://localhost:3001/
 
